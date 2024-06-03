@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Laborant Ekle</title>
+    <style>
+        /* Dropdown menu on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* optional: removes the gap so it looks seamless */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="/images/labmasterlogo.png" width="50" height="50">
+    <a class="navbar-brand" th:href="@{/home}">lab-master PRO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Ana Sayfa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Raporlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/reports}">Tüm Raporlar</a>
+                    <a class="dropdown-item" th:href="@{/reports/createReport}">Rapor Ekle</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Laborantlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <a class="dropdown-item" th:href="@{/laborants}">Tüm Laborantlar</a>
+                    <a class="dropdown-item" th:href="@{/laborants/createLaborant}">Laborant Ekle</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Yeni Laborant Ekle</h2>
+    <hr/>
+    <form th:action="@{/laborants/saveLaborant}" th:object="${laborant}" method="post">
+        <div class="form-group">
+            <label for="laborantfirstName">İsim</label>
+            <input type="text" class="form-control" id="laborantfirstName" th:field="*{laborantfirstName}">
+        </div>
+        <div class="form-group">
+            <label for="laborantlastName">Soyisim</label>
+            <input type="text" class="form-control" id="laborantlastName" th:field="*{laborantlastName}">
+        </div>
+        <div class="form-group">
+            <label for="hospitalID">Hastane ID</label>
+            <input type="text" class="form-control" id="hospitalID" th:field="*{hospitalID}">
+        </div>
+        <div class="text-danger mb-2" th:if="${#fields.hasErrors('hospitalID')}" th:errors="*{hospitalID}">Hata</div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a th:href="@{/laborants}" class="btn btn-secondary">İptal</a>
+    </form>
+    <div th:if="${errorMessage}" class="alert alert-danger mt-2" role="alert">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Rapor Detayları</title>
+    <style>
+        .scrollable {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        .table th, .table td {
+            padding: 0.5rem;
+        }
+        .table th {
+            width: 30%;
+        }
+
+                  /* Dropdown menu on hover */
+              .nav-item.dropdown:hover .dropdown-menu {
+                  display: block;
+                  margin-top: 0; /* optional: removes the gap so it looks seamless */
+              }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="/images/labmasterlogo.png" width="50" height="50">
+    <a class="navbar-brand" th:href="@{/home}">lab-master PRO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Ana Sayfa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Raporlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/reports}">Tüm Raporlar</a>
+                    <a class="dropdown-item" th:href="@{/reports/createReport}">Rapor Ekle</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Laborantlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <a class="dropdown-item" th:href="@{/laborants}">Tüm Laborantlar</a>
+                    <a class="dropdown-item" th:href="@{/laborants/createLaborant}">Laborant Ekle</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="report-details">
+                <h2 class="mt-5 mb-4 text-center">Rapor Detayları</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th>ID:</th>
+                                <td th:text="${report.id}"></td>
+                            </tr>
+                            <tr>
+                                <th>T.C. Kimlik Numarası:</th>
+                                <td th:text="${report.patientTC}"></td>
+                            </tr>
+                            <tr>
+                                <th>İsim:</th>
+                                <td th:text="${report.patientFirstName}"></td>
+                            </tr>
+                            <tr>
+                                <th>Soyisim:</th>
+                                <td th:text="${report.patientLastName}"></td>
+                            </tr>
+                            <tr>
+                                <th>Laborant ID:</th>
+                                <td th:text="${report.laborant.hospitalID}"></td> <!-- Laborant ID -->
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th>Tanı Başlığı:</th>
+                                <td th:text="${report.diagnoseTitle}"></td>
+                            </tr>
+                            <tr>
+                                <th>Tanı Detayı:</th>
+                                <td>
+                                    <div class="scrollable" th:text="${report.diagnoseDetails}"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rapor Tarihi:</th>
+                                <td th:text="${report.reportDate}"></td>
+                            </tr>
+                            <tr>
+                                <th>Ek Dosya:</th>
+                                <td>
+        <span th:if="${report.reportImagePath != null}">
+            <a th:href="@{/reports/download/{id}(id=${report.id})}">Rapor Görselini İndir</a>
+        </span>
+                                    <span th:if="${report.reportImagePath == null}">
+            Dosya Yok
+        </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a th:href="@{/reports}" class="btn btn-primary">Geri Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

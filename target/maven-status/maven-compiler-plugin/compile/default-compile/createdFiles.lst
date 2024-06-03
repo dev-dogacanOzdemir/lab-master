@@ -1,0 +1,12 @@
+com\doa\labmasterv10\Controller\HomeController.class
+com\doa\labmasterv10\Entities\Report.class
+com\doa\labmasterv10\Service\ReportService.class
+com\doa\labmasterv10\Controller\LaborantController.class
+com\doa\labmasterv10\Controller\ReportController.class
+com\doa\labmasterv10\Repository\ReportRepository.class
+com\doa\labmasterv10\Service\LaborantService.class
+com\doa\labmasterv10\Config\ResourceNotFoundException.class
+com\doa\labmasterv10\Config\SecurityConfig.class
+com\doa\labmasterv10\Application.class
+com\doa\labmasterv10\Entities\Laborant.class
+com\doa\labmasterv10\Repository\LaborantRepository.class

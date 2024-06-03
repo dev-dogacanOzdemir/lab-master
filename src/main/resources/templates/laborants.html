@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laborantlar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        /* Dropdown menu on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* optional: removes the gap so it looks seamless */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="/images/labmasterlogo.png" width="50" height="50">
+    <a class="navbar-brand" th:href="@{/home}">lab-master PRO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Ana Sayfa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Raporlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/reports}">Tüm Raporlar</a>
+                    <a class="dropdown-item" th:href="@{/reports/createReport}">Rapor Ekle</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    Laborantlar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <a class="dropdown-item" th:href="@{/la borants}">Tüm Laborantlar</a>
+                    <a class="dropdown-item" th:href="@{/laborants/createLaborant}">Laborant Ekle</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Laborantlar</h2>
+    <hr/>
+    <table class="table table-bordered table-striped" id="laborant-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Soyisim</th>
+            <th>Hastane ID</th>
+            <th>İşlemler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="laborant : ${laborants}">
+            <td th:text="${laborant.id}"></td>
+            <td th:text="${laborant.laborantfirstName}"></td>
+            <td th:text="${laborant.laborantlastName}"></td>
+            <td th:text="${laborant.hospitalID}"></td>
+            <td>
+                <a th:href="@{/laborants/{id}(id=${laborant.id})}" class="btn btn-info ml-2">İncele</a>
+                <a th:href="@{/laborants/editLaborant/{id}(id=${laborant.id})}" class="btn btn-warning ml-2">Düzenle</a>
+                <a th:href="@{/laborants/delete/{id}(id=${laborant.id})}" class="btn btn-danger ml-2">Sil</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/laborants/createLaborant}" class="btn btn-primary">Laborant Oluştur</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#laborant-table').DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1]
+            }]
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        /* Dropdown menu on hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* optional: removes the gap so it looks seamless */
+        }
+        .custom-btn {
+            height: 2cm;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="/images/labmasterlogo.png" width="50" height="50">
+        <a class="navbar-brand" th:href="@{/home}">lab-master PRO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/home}">Ana Sayfa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Raporlar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/reports}">Tüm Raporlar</a>
+                        <a class="dropdown-item" th:href="@{/reports/createReport}">Rapor Ekle</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Laborantlar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <a class="dropdown-item" th:href="@{/laborants}">Tüm Laborantlar</a>
+                        <a class="dropdown-item" th:href="@{/laborants/createLaborant}">Laborant Ekle</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</head>
+<body>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <a th:href="@{/laborants}" class="btn btn-primary btn-lg btn-block custom-btn">Laborantlar</a>
+        </div>
+        <div class="col-12">
+            <a th:href="@{/reports}" class="btn btn-primary btn-lg btn-block custom-btn">Raporlar</a>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-4">
+    <img src="/images/labmasterlogo.png" alt="Labmaster Logo">
+</div>
+</body>
+</html>
