@@ -46,17 +46,29 @@
     ```
 2. Bir dosya olarak istediğiniz yere kopyalayın.
   
-3. labMasterPRO dosyasını çalıştırdığınızda gerekli yapılandırmaları yapacaktır. (Windows için)
-4. Terminal üzerinden ilgili dosyaya gelip
-   '''bash
+3.
+   **Windows :** 
+   
+   - labMasterPRO dosyasını çalıştırdığınızda gerekli yapılandırmaları yapacaktır. 
+
+   **Linux :**
+  
+   - Terminal üzerinden ilgili dosyaya gelip
+   ```bash
    chmod +x run_app.sh
    chmod +x create_db.sh
-   '''
+   ```
    kodlarını yazın.
+   
+   
 
 <h2 id="uygulamayi-calistirma">Uygulamayı Çalıştırma</h2>
 
-1. labMasterPRO kısayolunu çalıştırın.
+1. **Windows :**
+ - labMasterPRO kısayolunu çalıştırın.
+   
+   **Linux :**
+ - labMasterPRO(Linux).sh scriptini çalıştırın. 
 
 2. Tarayıcınızda `http://localhost:8080` adresine gidin.
 
