@@ -44,7 +44,9 @@
     mvn -version
     mysql --version
     ```
-2. labMasterPRO dosyasını çalıştırdığınızda gerekli yapılandırmaları yapacaktır.
+2. Bir dosya olarak istediğiniz yere kopyalayın.
+  
+3. labMasterPRO dosyasını çalıştırdığınızda gerekli yapılandırmaları yapacaktır. (Windows için)
 
 <h2 id="uygulamayi-calistirma">Uygulamayı Çalıştırma</h2>
 
