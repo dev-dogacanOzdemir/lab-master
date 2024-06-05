@@ -47,6 +47,12 @@
 2. Bir dosya olarak istediğiniz yere kopyalayın.
   
 3. labMasterPRO dosyasını çalıştırdığınızda gerekli yapılandırmaları yapacaktır. (Windows için)
+4. Terminal üzerinden ilgili dosyaya gelip
+   '''bash
+   chmod +x run_app.sh
+   chmod +x create_db.sh
+   '''
+   kodlarını yazın.
 
 <h2 id="uygulamayi-calistirma">Uygulamayı Çalıştırma</h2>
 
